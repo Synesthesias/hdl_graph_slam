@@ -53,7 +53,7 @@ def gps2navsat(filename, bag):
 				bag.write('/gps/geopoint', geopoint, geopoint.header.stamp)
 
 		except:
-			print 'done'
+			print('done')
 
 
 def mat2pointcloud(filename):
@@ -70,13 +70,13 @@ def mat2pointcloud(filename):
 
 def main():
 	if len(sys.argv) < 2:
-		print 'usage: ford2bag.py src_dirname output_filename'
+		print('usage: ford2bag.py src_dirname output_filename')
 
 	output_filename = sys.argv[1]
 
 	rospy.init_node('bag')
 	filenames = sorted(['SCANS/' + x for x in os.listdir('SCANS') if re.match('Scan[0-9]*\.mat', x)])
-	print filenames
+	print(filenames)
 
 	progress = progressbar.ProgressBar(max_value=len(filenames))
 	pub = rospy.Publisher('/velodyne_points', PointCloud2, queue_size=32)
